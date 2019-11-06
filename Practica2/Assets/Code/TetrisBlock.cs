@@ -26,7 +26,12 @@ public class TetrisBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        {//Rotation
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                trans.rotation *= Quaternion.Euler(0, 0, 90);
+            }
+        }
         {//X-axis movement
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -47,7 +52,7 @@ public class TetrisBlock : MonoBehaviour
             accDeltaTime += Time.deltaTime;
             var actualMovementTick = tickDeltaTime;
 
-            if (Input.GetKey(KeyCode.LeftShift)|| Input.GetKey(KeyCode.RightShift))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 actualMovementTick = fastTickDeltaTime;
                 //actualMovementTick = speedFactor * tickDeltaTime;
