@@ -7,6 +7,7 @@ public class TetrisBlock : MonoBehaviour
     public float tickDeltaTime;
     public float fastTickDeltaTime;
     public float speedFactor;
+    public TetrisBoard Board;
 
     private Transform trans;
     private float accDeltaTime;
@@ -23,30 +24,38 @@ public class TetrisBlock : MonoBehaviour
         trans = this.transform;    
     }
 
-    void ApplyConstraints(Vector3 rollbackPos, Quaternion rollbackRot)
+    (bool,bool) ApplyConstraints(Vector3 rollbackPos, Quaternion rollbackRot)
     {
-        var isOut = CheckConstraints();
-        if (isOut)
+        var (isOutX,isOutY) = CheckConstraints();
+        if (isOutX|| isOutY)
         {
             trans.position = rollbackPos;
             trans.rotation = rollbackRot;
         }
 
+        return (isOutX,isOutY);
+
     }
 
-    bool CheckConstraints()
+    (bool,bool) CheckConstraints()
     {
-        var isOut = false;
+        var isOutX = false;
+        var isOutY = false;
         for (int i = 0; i < trans.childCount; i++)
         {
             var childTrans = trans.GetChild(i);
-            if(childTrans.position.x <0 || childTrans.position.x > 10)
+            if(childTrans.position.x <0 || childTrans.position.x > 11)
             {
-                isOut = true;
+                isOutX = true;
+                break;
+            }
+            if (childTrans.position.y < 0)
+            {
+                isOutY = true;
                 break;
             }
         }
-        return isOut;
+        return (isOutX,isOutY);
     }
 
     // Update is called once per frame
@@ -97,10 +106,21 @@ public class TetrisBlock : MonoBehaviour
             {
                 {//Move Down
 
+                    var oldPos = trans.position;
+                    var oldRot = trans.rotation;
+
                     var newPos = trans.position;
                     newPos.y -= 1;
                     trans.position = newPos;
 
+                    var(isOutX,isOutY)=ApplyConstraints(oldPos,oldRot);
+
+                    var done = false;
+                    if (done)
+                    {
+                        this.enabled=false;
+                        Board.InstantiateTetrisBlock();
+                    }
                 }
 
                 accDeltaTime = 0;
