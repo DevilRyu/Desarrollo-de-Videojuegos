@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     /*[SerializeField] to see the variable in unity*/ private Rigidbody2D rb;
     /*[SerializeField]*/ private Animator anim;
+    private enum State {idle,running,jumping};
+    private State state = State.idle;
     // Start is called before the first frame updateasas
     void Start()
     {
@@ -19,26 +21,45 @@ public class PlayerController : MonoBehaviour
     {
         float hdirection = Input.GetAxis("Horizontal");
 
-        if (hdirection < 0)
+        if (hdirection<0)
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-            anim.SetBool("running", true);
         }
         else if (hdirection>0)
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
-            anim.SetBool("running", true);
         }
-        else
+        else if (hdirection==0)
         {
-            anim.SetBool("running", false);
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
             rb.velocity = new Vector2(rb.velocity.x, 7f);
+            state = State.jumping;
         }
+
+        VelocityState();
+        anim.SetInteger("state",(int)state);
+    }
+
+    private void VelocityState()
+    {
+        if (state ==State.jumping){
+
+        }
+        else if (Mathf.Abs(rb.velocity.x)>1f)
+        {
+            //Moving
+            state = State.running;
+        }
+
+        else
+        {
+            state = State.idle;
+        }
+
     }
 }
