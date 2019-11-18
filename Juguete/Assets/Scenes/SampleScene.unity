@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 930103933}
   - component: {fileID: 930103934}
   - component: {fileID: 930103935}
+  - component: {fileID: 930103936}
   m_Layer: 0
   m_Name: Ligth
   m_TagString: Untagged
@@ -1147,7 +1148,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: dd247f222c6264ca39475b75487a73f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fdb550509659347d4b4c37d05c566ad2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1206,18 +1207,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11069238, y: -0.30993354}
+  m_Offset: {x: -0.11069238, y: -0.27096474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.28, y: 2.4}
+    oldSize: {x: 2.9285715, y: 2.142857}
     newSize: {x: 3.28, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4905641, y: 1.6030242}
+  m_Size: {x: 0.4905641, y: 1.3580792}
   m_EdgeRadius: 0
 --- !u!114 &930103935
 MonoBehaviour:
@@ -1232,6 +1233,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 930103933}
+--- !u!95 &930103936
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930103930}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c47a0dd1780d35b41a9724a44c53f867, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1020007130
 GameObject:
   m_ObjectHideFlags: 0
