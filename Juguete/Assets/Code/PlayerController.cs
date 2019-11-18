@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 
     public Rigidbody2D rb;
-    // Start is called before the first frame update
+    public Animator anim;
+    // Start is called before the first frame updateasas
     void Start()
     {
         
@@ -18,12 +19,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
-            transform.localScale = new Vector2(-1,1);
+            transform.localScale = new Vector2(-1, 1);
+            anim.SetBool("running", true);
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
+            anim.SetBool("running", true);
+        }
+        else
+        {
+            anim.SetBool("running", false);
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
