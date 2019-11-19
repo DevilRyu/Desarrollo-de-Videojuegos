@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
 
     // Start variables
     protected Rigidbody2D rb;
-    protected Animator anim;
+    protected Animator animator;
     protected Collider2D coll;
     protected bool crunch;
+    protected bool punch;
     //FSM
-    protected enum State {idle,running,jumping,falling,crunch};
+    protected enum State {idle,running,jumping,falling,crunch,punch};
     protected State state = State.idle;
 
     //Inspector Variables
@@ -25,8 +26,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         crunch = false;
+        punch = false;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
     }
 
@@ -34,8 +36,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        Attack();
         AnimationState();
-        anim.SetInteger("state", (int)state);//set animation based on Enumerator state
+        animator.SetInteger("state", (int)state);//set animation based on Enumerator state
 
     }
 
@@ -74,7 +77,13 @@ public class PlayerController : MonoBehaviour
         {
             state = State.crunch;
         }
-
+        else if (state == State.punch)
+        {
+            if (punch)
+            {
+                punch = false;
+            }
+        }
         else
         {
             state = State.idle;

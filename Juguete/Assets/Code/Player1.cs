@@ -35,4 +35,13 @@ public class Player1 : PlayerController
             crunch = false;
         }
     }
+
+    public override void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.H) && coll.IsTouchingLayers(floor))
+        {
+            state = State.punch;
+            punch = true;
+        }
+    }
 }
