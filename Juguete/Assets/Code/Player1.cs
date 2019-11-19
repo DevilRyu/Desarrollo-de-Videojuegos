@@ -17,16 +17,22 @@ public class Player1 : PlayerController
             rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
         }
+        //Jump
+        else if (Input.GetKeyDown(KeyCode.W) && coll.IsTouchingLayers(floor))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            state = State.jumping;
+        }
+        //Crunch
+        else if (Input.GetKey(KeyCode.S) && coll.IsTouchingLayers(floor))
+        {
+            crunch = true;
+        }
         //Stop Moving
         else
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-        //Jump
-        if (Input.GetKeyDown(KeyCode.W) && coll.IsTouchingLayers(floor))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            state = State.jumping;
+            crunch = false;
         }
     }
 }
