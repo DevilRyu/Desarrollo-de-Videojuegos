@@ -5,13 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    /*[SerializeField] to see the variable in unity*/ private Rigidbody2D rb;
-    /*[SerializeField]*/ private Animator anim;
+    /*[SerializeField] to see the variable in unity*/ 
+
+    // Start variables
+    private Rigidbody2D rb;
+    private Animator anim;
+    private Collider2D coll;
+
+    //FSM
     private enum State {idle,running,jumping,falling};
     private State state = State.idle;
-    private Collider2D coll;
-    [SerializeField] private LayerMask floor;
 
+    //Inspector Variables
+    [SerializeField] private LayerMask floor;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float jumpForce = 7f;
 
     // Start is called before the first frame updateasas
     void Start()
@@ -24,33 +32,40 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hdirection = Input.GetAxis("Horizontal");
+        Movement();
+        AnimationState();
+        anim.SetInteger("state", (int)state);//set animation based on Enumerator state
+    }
 
-        if (hdirection<0)
+    private void Movement()
+    {
+        float hdirection = Input.GetAxis("Horizontal");
+        //Moving Left
+        if (hdirection < 0)
         {
-            rb.velocity = new Vector2(-3, rb.velocity.y);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
         }
-        else if (hdirection>0)
+        //Moving Rigth
+        else if (hdirection > 0)
         {
-            rb.velocity = new Vector2(3, rb.velocity.y);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
         }
-        else if (hdirection==0)
+        //Stop Moving
+        else if (hdirection == 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if(Input.GetButtonDown("Vertical") && coll.IsTouchingLayers(floor))
+        //Jump
+        if (Input.GetButtonDown("Vertical") && coll.IsTouchingLayers(floor))
         {
-            rb.velocity = new Vector2(rb.velocity.x, 7f);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             state = State.jumping;
         }
-
-        VelocityState();
-        anim.SetInteger("state",(int)state);
     }
 
-    private void VelocityState()
+    private void AnimationState()
     {
         if (state ==State.jumping)
         {
