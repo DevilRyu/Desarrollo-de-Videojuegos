@@ -8,18 +8,17 @@ public class PlayerController : MonoBehaviour
     /*[SerializeField] to see the variable in unity*/ 
 
     // Start variables
-    private Rigidbody2D rb;
-    private Animator anim;
-    private Collider2D coll;
-
+    protected Rigidbody2D rb;
+    protected Animator anim;
+    protected Collider2D coll;
     //FSM
-    private enum State {idle,running,jumping,falling};
-    private State state = State.idle;
+    protected enum State {idle,running,jumping,falling};
+    protected State state = State.idle;
 
     //Inspector Variables
-    [SerializeField] private LayerMask floor;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float jumpForce = 7f;
+    [SerializeField] protected LayerMask floor;
+    [SerializeField] protected float speed = 3f;
+    [SerializeField] protected float jumpForce = 7f;
 
     // Start is called before the first frame updateasas
     void Start()
@@ -37,7 +36,7 @@ public class PlayerController : MonoBehaviour
         anim.SetInteger("state", (int)state);//set animation based on Enumerator state
     }
 
-    private void Movement()
+    virtual public void Movement()
     {
         float hdirection = Input.GetAxis("Horizontal");
         //Moving Left
