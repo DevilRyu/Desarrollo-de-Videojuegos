@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 400796591}
   - component: {fileID: 400796593}
   - component: {fileID: 400796592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,8 +1232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42b12f9467d5404294813d44a9db004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 930103933}
-  anim: {fileID: 930103936}
+  floor:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!95 &930103936
 Animator:
   serializedVersion: 3

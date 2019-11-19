@@ -7,13 +7,18 @@ public class PlayerController : MonoBehaviour
 
     /*[SerializeField] to see the variable in unity*/ private Rigidbody2D rb;
     /*[SerializeField]*/ private Animator anim;
-    private enum State {idle,running,jumping};
+    private enum State {idle,running,jumping,falling};
     private State state = State.idle;
+    private Collider2D coll;
+    [SerializeField] private LayerMask floor;
+
+
     // Start is called before the first frame updateasas
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        coll = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetButtonDown("Vertical") && coll.IsTouchingLayers(floor))
         {
             rb.velocity = new Vector2(rb.velocity.x, 7f);
             state = State.jumping;
@@ -47,8 +52,20 @@ public class PlayerController : MonoBehaviour
 
     private void VelocityState()
     {
-        if (state ==State.jumping){
+        if (state ==State.jumping)
+        {
+            if (rb.velocity.y< .1f)
+            {
+                state = State.falling;
+            }
 
+        }
+        else if (state == State.falling)
+        {
+            if (coll.IsTouchingLayers(floor))
+            {
+                state = State.idle;
+            }
         }
         else if (Mathf.Abs(rb.velocity.x)>1f)
         {
