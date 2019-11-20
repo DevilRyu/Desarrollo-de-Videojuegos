@@ -226,6 +226,7 @@ MonoBehaviour:
     m_Bits: 256
   speed: 3
   jumpForce: 7
+  hurtForce: 5
 --- !u!1 &1020007130
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +399,7 @@ GameObject:
   - component: {fileID: 1613926033}
   m_Layer: 0
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613926030}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 7.5, y: 4.34, z: 0}
+  m_LocalPosition: {x: 4.21, y: 4.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -485,7 +486,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1613926034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -499,18 +500,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06641865, y: -0.17710686}
+  m_Offset: {x: 0.12934136, y: -0.2390722}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 2.36}
+    oldSize: {x: 3.5714285, y: 2.107143}
     newSize: {x: 4, y: 2.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0334721, y: 1.4744678}
+  m_Size: {x: 0.64195204, y: 1.3505371}
   m_EdgeRadius: 0
 --- !u!1001 &1404418841578594860
 PrefabInstance:
@@ -578,6 +579,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404418841438308738, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404418841438308737, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404418841438308739, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404418841438308764, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404418841438308764, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 778271603321609563, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673830915691418670, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534599538151912522, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534599538151912522, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840326156766240857, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451762802560374842, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451762802560374842, guid: a0d6018319f46c441a05169671ebafb1,
+        type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d6018319f46c441a05169671ebafb1, type: 3}
