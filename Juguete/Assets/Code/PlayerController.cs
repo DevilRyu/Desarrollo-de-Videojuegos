@@ -9,12 +9,15 @@ public class PlayerController : MonoBehaviour
 
     // Start variables
     protected Rigidbody2D rb;
-    protected Animator animator;
+    private Animator animator;
     protected Collider2D coll;
     protected bool crunch;
     protected bool punch;
+    protected bool kick;
+    protected bool jump;
+
     //FSM
-    protected enum State {idle,running,jumping,falling,crunch,punch};
+    protected enum State {idle,running,jumping,falling,crunch,punch,kick};
     protected State state = State.idle;
 
     //Inspector Variables
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         crunch = false;
         punch = false;
+        jump = false;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
@@ -52,7 +56,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void AnimationState()
-    {
+    {    
+        //Jumping Animation
         if (state == State.jumping)
         {
             if (rb.velocity.y < .1f)
@@ -68,11 +73,29 @@ public class PlayerController : MonoBehaviour
                 state = State.idle;
             }
         }
+        //Moving Animation
         else if (Mathf.Abs(rb.velocity.x) > 1f)
         {
-            //Moving
+           
             state = State.running;
+            if (punch)
+            {
+                state = State.punch;
+                punch = false;
+            }
+            else if (kick)
+            {
+                state = State.kick;
+                kick = false;
+
+            }
+            else if (jump)
+            {
+                state = State.jumping;
+                jump = false;
+            }
         }
+        //Attack Animation
         else if (crunch)
         {
             state = State.crunch;
@@ -82,6 +105,21 @@ public class PlayerController : MonoBehaviour
             if (punch)
             {
                 punch = false;
+            }
+            else
+            {
+                state = State.idle;
+            }
+        }
+        else if(state == State.kick)
+        {
+            if (kick )
+            {
+                kick = false;
+            }
+            else
+            {
+                state = State.idle;
             }
         }
         else
