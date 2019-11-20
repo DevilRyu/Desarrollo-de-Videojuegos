@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected LayerMask floor;
     [SerializeField] protected float speed = 3f;
     [SerializeField] protected float jumpForce = 7f;
-    [SerializeField] protected float hurtForce = .005f;
+    [SerializeField] protected float hurtForce = 2f;
 
     // Start is called before the first frame updateasas
     void Start()
@@ -64,6 +64,18 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(hurtForce, rb.velocity.y);
             }
 
+        }
+        else if (other.gameObject.tag == "Enemy1")
+        {
+            state = State.hurt;
+            if (other.gameObject.transform.position.x > transform.position.x)
+            {
+                rb.velocity = new Vector2(-hurtForce, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(hurtForce, rb.velocity.y);
+            }
         }
     }
 
